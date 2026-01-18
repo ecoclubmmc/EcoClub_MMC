@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is admin
+    // Note: This assumes you have a 'users' collection where the document ID is the auth UID
+    // and it has a field 'role' set to 'admin'.
+    function isAdmin() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Users: Users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if isAdmin(); 
+    }
+
+    // Events: Public read, Admin write
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Secretaries: Public read, Admin write (MISSING RULE Likely)
+    match /secretaries/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Site Content: Public read, Admin write
+    match /site_content/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Registrations: Admin read, User write own
+    match /registrations/{regId} {
+      allow read: if isAdmin();
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+  }
+}
