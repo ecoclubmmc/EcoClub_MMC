@@ -27,6 +27,7 @@ export type Event = {
   description: string;
   image: string; // Thumbnail/Card image
   badgeEmoji: string; // Emoji
+  badgeImage?: string; // Optional custom badge image URL
   badgeName: string;
   formFields: FormField[];
   coverImage?: string; // Event cover photo

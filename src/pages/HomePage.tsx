@@ -18,10 +18,10 @@ export default function HomePage() {
       <div className="container mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-6">
         
         {/* Join CTA - Spans 8 Cols */}
-        <div className="lg:col-span-8 bg-black/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 border border-white/10 relative overflow-hidden flex flex-col justify-center min-h-[400px] shadow-2xl">
-           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-emerald-500/20 to-transparent rounded-full blur-[80px] -mr-20 -mt-20" />
+        <div className="lg:col-span-8 bg-black/40 backdrop-blur-md rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-white/10 relative overflow-hidden flex flex-col justify-center min-h-[300px] md:min-h-[400px] shadow-2xl">
+           <div className="absolute top-0 right-0 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-gradient-to-bl from-emerald-500/20 to-transparent rounded-full blur-[60px] md:blur-[80px] -mr-20 -mt-20" />
            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
                 Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200">Movement</span>
               </h2>
               <p className="text-slate-200 text-lg mb-8 max-w-xl leading-relaxed">

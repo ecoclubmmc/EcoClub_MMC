@@ -251,7 +251,7 @@ export default function EventsPage({ category, title = "Eco Events" }: EventsPag
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-slate-900/90 backdrop-blur-xl w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden relative border border-white/20 my-auto max-h-[90vh] overflow-y-auto"
+              className="bg-slate-900/90 backdrop-blur-xl w-[95%] md:w-full max-w-lg rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden relative border border-white/20 my-auto max-h-[90vh] overflow-y-auto"
             >
               <button 
                 onClick={() => setSelectedEvent(null)}

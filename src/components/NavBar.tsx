@@ -68,37 +68,48 @@ export default function NavBar() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-4 md:hidden animate-in slide-in-from-top-4 duration-200 shadow-2xl">
-          <Link to="/" onClick={() => setIsMenuOpen(false)} className={`text-lg font-medium ${location.pathname === '/' ? 'text-emerald-400' : 'text-slate-300'}`}>Home</Link>
-          <Link to="/about" onClick={() => setIsMenuOpen(false)} className={`text-lg font-medium ${location.pathname === '/about' ? 'text-emerald-400' : 'text-slate-300'}`}>About</Link>
-          <Link to="/events" onClick={() => setIsMenuOpen(false)} className={`text-lg font-medium ${location.pathname === '/events' ? 'text-emerald-400' : 'text-slate-300'}`}>Events</Link>
-          <Link to="/campus-activities" onClick={() => setIsMenuOpen(false)} className={`text-lg font-medium ${location.pathname === '/campus-activities' ? 'text-emerald-400' : 'text-slate-300'}`}>Campus Activities</Link>
-          <Link to="/field-visits" onClick={() => setIsMenuOpen(false)} className={`text-lg font-medium ${location.pathname === '/field-visits' ? 'text-emerald-400' : 'text-slate-300'}`}>Field Visits</Link>
-          
-          <div className="h-px bg-white/10 my-2" />
-          
-          {user ? (
-            <div className="flex flex-col gap-4">
-               <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 text-white">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-sm font-bold text-emerald-400">
-                    {user.name[0]}
-                  </div>
-                  <span>{user.name}</span>
-               </Link>
-               {user.role === 'admin' && (
-                 <Link to="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 text-slate-300">
-                   <Settings className="w-5 h-5" /> Admin Dashboard
-                 </Link>
-               )}
-               <button onClick={() => { logout(); setIsMenuOpen(false); }} className="flex items-center gap-2 text-red-400">
-                 <LogOut className="w-5 h-5" /> Logout
-               </button>
-            </div>
-          ) : (
-            <Link to="/login" onClick={() => setIsMenuOpen(false)} className="px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold text-center">
-              Sign In
-            </Link>
-          )}
+        <div className="fixed inset-0 top-[72px] bg-slate-900/95 backdrop-blur-xl border-t border-white/10 z-40 md:hidden flex flex-col animate-in slide-in-from-top-4 duration-300">
+           <div className="p-6 flex flex-col gap-6 overflow-y-auto">
+              <div className="flex flex-col gap-4 text-center">
+                 <Link to="/" onClick={() => setIsMenuOpen(false)} className={`text-xl font-bold py-2 ${location.pathname === '/' ? 'text-emerald-400' : 'text-slate-300'}`}>Home</Link>
+                 <Link to="/about" onClick={() => setIsMenuOpen(false)} className={`text-xl font-bold py-2 ${location.pathname === '/about' ? 'text-emerald-400' : 'text-slate-300'}`}>About</Link>
+                 <Link to="/events" onClick={() => setIsMenuOpen(false)} className={`text-xl font-bold py-2 ${location.pathname === '/events' ? 'text-emerald-400' : 'text-slate-300'}`}>Events</Link>
+                 <Link to="/campus-activities" onClick={() => setIsMenuOpen(false)} className={`text-xl font-bold py-2 ${location.pathname === '/campus-activities' ? 'text-emerald-400' : 'text-slate-300'}`}>Activities</Link>
+                 <Link to="/field-visits" onClick={() => setIsMenuOpen(false)} className={`text-xl font-bold py-2 ${location.pathname === '/field-visits' ? 'text-emerald-400' : 'text-slate-300'}`}>Visits</Link>
+              </div>
+
+              <div className="h-px bg-white/10 w-full" />
+              
+              <div className="flex flex-col gap-3">
+                {user ? (
+                    <>
+                       <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10">
+                          <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-lg font-bold text-emerald-400">
+                            {user.name[0]}
+                          </div>
+                          <div className="text-left">
+                             <p className="font-bold text-white">{user.name}</p>
+                             <p className="text-xs text-slate-400">View Profile</p>
+                          </div>
+                       </Link>
+
+                       {user.role === 'admin' && (
+                         <Link to="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2 p-4 rounded-xl bg-purple-500/10 text-purple-400 font-bold border border-purple-500/20">
+                           <Settings className="w-5 h-5" /> Admin Dashboard
+                         </Link>
+                       )}
+
+                       <button onClick={() => { logout(); setIsMenuOpen(false); }} className="flex items-center justify-center gap-2 p-4 rounded-xl bg-red-500/10 text-red-400 font-bold border border-red-500/20 mt-2">
+                         <LogOut className="w-5 h-5" /> Sign Out
+                       </button>
+                    </>
+                ) : (
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)} className="w-full py-4 rounded-xl bg-emerald-600 text-white font-bold text-center shadow-lg hover:bg-emerald-500">
+                      Sign In to Account
+                    </Link>
+                )}
+              </div>
+           </div>
         </div>
       )}
     </nav>
